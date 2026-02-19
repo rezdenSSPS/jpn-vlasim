@@ -36,14 +36,14 @@ html, body {
 }
 
 h1 {
-  color: #c0392b;
-  border-bottom: 2px solid #c0392b;
+  color: #FF7F16;
+  border-bottom: 2px solid #FF7F16;
   padding-bottom: 8px;
   margin-top: 0;
 }
 
 h2 {
-  color: #c0392b;
+  color: #FF7F16;
   margin-top: 30px;
 }
 
@@ -147,7 +147,7 @@ hr {
 }
 
 .error-note {
-  color: #c0392b;
+  color: #FF7F16;
   font-size: 13px;
   font-style: italic;
 }
