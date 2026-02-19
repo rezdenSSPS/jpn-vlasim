@@ -71,6 +71,56 @@ hr {
   font-size: 14px;
 }
 
+.view-toggle {
+  margin-bottom: 12px;
+}
+
+.toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-label input[type="checkbox"] {
+  display: none;
+}
+
+.toggle-slider {
+  position: relative;
+  width: 50px;
+  height: 26px;
+  background-color: #ccc;
+  border-radius: 26px;
+  transition: 0.3s;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.toggle-label input:checked + .toggle-slider {
+  background-color: #FF7F16;
+}
+
+.toggle-label input:checked + .toggle-slider:before {
+  transform: translateX(24px);
+}
+
+.toggle-text {
+  font-size: 14px;
+  color: #555;
+}
+
 .restaurant-list {
   margin-top: 16px;
 }
@@ -97,6 +147,10 @@ hr {
 
 .restaurant-header:hover {
   background: #eee;
+}
+
+.restaurant-header-static .arrow {
+  display: none;
 }
 
 .restaurant-header-static {
