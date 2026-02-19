@@ -43,9 +43,13 @@ document.querySelectorAll('.restaurant-item').forEach(item => {
       header.appendChild(hoursSpan);
     }
     
+    if (arrow) {
+      arrow.style.display = 'none';
+    }
+    
     body.style.display = 'none';
     header.style.cursor = 'default';
-    header.onclick = null;
+    header.classList.add('restaurant-header-static');
   }
 });
 
@@ -70,11 +74,19 @@ document.getElementById('view-toggle').addEventListener('change', function() {
           }
         });
         
-        if (todayHours && !hoursSpan) {
+        if (hoursSpan) {
+          hoursSpan.remove();
+        }
+        
+        if (todayHours) {
           const span = document.createElement('span');
           span.className = 'today-hours';
           span.textContent = `: ${todayHours}`;
           header.appendChild(span);
+        }
+        
+        if (arrow) {
+          arrow.style.display = 'none';
         }
         
         body.style.display = 'none';
@@ -85,6 +97,10 @@ document.getElementById('view-toggle').addEventListener('change', function() {
       } else {
         if (hoursSpan) {
           hoursSpan.remove();
+        }
+        
+        if (arrow) {
+          arrow.style.display = '';
         }
         
         body.style.display = 'none';
