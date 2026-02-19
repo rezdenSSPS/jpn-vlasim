@@ -2,7 +2,9 @@ const dayNames = ['Neděle', 'Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pá
 const todayIndex = new Date().getDay();
 const todayName = dayNames[todayIndex];
 
-document.getElementById('today-display').textContent = todayName;
+if (document.getElementById('today-display')) {
+  document.getElementById('today-display').textContent = todayName;
+}
 
 const restaurantItems = [];
 
@@ -36,6 +38,9 @@ document.querySelectorAll('.restaurant-item').forEach(item => {
       }
     });
     
+    const existingHours = header.querySelectorAll('.today-hours');
+    existingHours.forEach(span => span.remove());
+    
     if (todayHours) {
       const hoursSpan = document.createElement('span');
       hoursSpan.className = 'today-hours';
@@ -53,12 +58,15 @@ document.querySelectorAll('.restaurant-item').forEach(item => {
   }
 });
 
-document.getElementById('view-toggle').addEventListener('change', function() {
-  const showToday = this.checked;
+const toggle = document.getElementById('view-toggle');
+if (toggle) {
+  toggle.addEventListener('change', function() {
+    const showToday = this.checked;
   
   restaurantItems.forEach(({ item, header, body, table, arrow, originalHeaderHTML, originalClass }) => {
     if (table) {
-      const hoursSpan = header.querySelector('.today-hours');
+      const existingHours = header.querySelectorAll('.today-hours');
+      existingHours.forEach(span => span.remove());
       
       if (showToday) {
         const rows = table.querySelectorAll('tr');
@@ -73,10 +81,6 @@ document.getElementById('view-toggle').addEventListener('change', function() {
             }
           }
         });
-        
-        if (hoursSpan) {
-          hoursSpan.remove();
-        }
         
         if (todayHours) {
           const span = document.createElement('span');
@@ -95,10 +99,6 @@ document.getElementById('view-toggle').addEventListener('change', function() {
         header.classList.remove('restaurant-header');
         header.onclick = null;
       } else {
-        if (hoursSpan) {
-          hoursSpan.remove();
-        }
-        
         if (arrow) {
           arrow.style.display = '';
         }
@@ -121,3 +121,4 @@ document.getElementById('view-toggle').addEventListener('change', function() {
     todayDisplay.style.display = showToday ? 'block' : 'none';
   }
 });
+}
